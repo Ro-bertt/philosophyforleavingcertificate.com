@@ -62,12 +62,48 @@
   .section-card h3{font-size:18px; margin:4px 0 4px; font-weight:600;}
   .section-card p{margin:0; font-size:15px;}
 
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule);
-    border:1px solid var(--rule); margin:8px 0 18px;}
-  .stat{background:var(--paper-raise); padding:20px 16px;}
-  .stat .n{font-family:'IBM Plex Mono'; font-size:23px; color:var(--civic); font-weight:600; display:block;}
-  .stat .l{font-size:12.5px; color:var(--ink-soft); margin-top:4px; display:block; line-height:1.35;}
-  .stat .src{font-family:'IBM Plex Mono'; font-size:10px; color:var(--rule); display:block; margin-top:8px; text-transform:uppercase;}
+  /* PASTE THIS INSTEAD: */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 22px 0;
+}
+.stat {
+  background: var(--paper-raise);
+  border: 1px solid var(--rule);
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+}
+.stat .n {
+  font-family: 'IBM Plex Mono';
+  font-size: 18px;
+  color: var(--civic);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+}
+.stat .l {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.45;
+  flex-grow: 1;
+}
+.stat .l strong {
+  color: var(--ink);
+}
+.stat .src {
+  font-family: 'IBM Plex Mono';
+  font-size: 10px;
+  color: var(--rule);
+  display: block;
+  margin-top: 14px;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
 
   .callout{border:1px solid var(--civic); border-left:4px solid var(--civic); background:var(--paper-raise);
     padding:18px 20px; margin:18px 0;}
@@ -198,11 +234,24 @@
     <h2>The research</h2>
     <p class="lede">A primary <a href="XXXXX">survey</a> of Irish students, teachers, graduates and employers is running alongside this proposal to further the research below.</p>
     <div class="stats">
-      <div class="stat"><span class="n">$52.6k &rarr; $94.3k</span><span class="l">highest starting AND highest mid-career salary of any US humanities major</span><span class="src">APA / PayScale</span></div>
-      <div class="stat"><span class="n">3.2%</span><span class="l">unemployment, vs. 3.7% for finance grads and 6.1% for computer science grads</span><span class="src">NY Fed, 2025</span></div>
-      <div class="stat"><span class="n">2nd &middot; top</span><span class="l">mean LSAT score of any major (2nd only to economics); among the highest GRE scores of any field</span><span class="src">LSAC / ETS</span></div>
-    </div>
-    <div class="callout">
+  <div class="stat">
+    <span class="n">$52.6k &rarr; $94.3k</span>
+    <span class="l"><strong>Highest salary growth</strong> of any US humanities major from entry-level to mid-career.</span>
+    <span class="src">APA / PayScale</span>
+  </div>
+  
+  <div class="stat">
+    <span class="n">3.2% Unemployment</span>
+    <span class="l">Highly resilient career tracks, outperforming finance grads (3.7%) and computer science grads (6.1%).</span>
+    <span class="src">NY Fed, 2025</span>
+  </div>
+  
+  <div class="stat">
+    <span class="n">#2 LSAT &middot; Top GRE</span>
+    <span class="l">Second highest mean score of any major on the LSAT, alongside top-tier quantitative and verbal performance on the GRE.</span>
+    <span class="src">LSAC / ETS</span>
+  </div>
+</div>    <div class="callout">
       <div class="tag">Selection effect, or does it actually train you?</div>
       <p>The obvious objection: maybe philosophy just attracts strong thinkers, rather than making them. A 2025 study tracking 649,511 US undergraduates controlled for incoming SAT scores and found a real residual training effect &mdash; philosophy majors outscored non-majors on the GRE Verbal by 33 points and the LSAT by 2 points <em>after</em> controlling for incoming ability, and ranked first of 57 majors on a composite measure of intellectual rigour and open-mindedness. <a href="https://philarchive.org/rec/PRISPD" target="_blank" rel="noopener">Prinzing &amp; Vazquez (2025)</a>, open access.</p>
     </div>
