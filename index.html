@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <style>
   :root{
-    --paper:#F7F4EC; --paper-raise:#FBF9F3; --ink:#1C1C1A; --ink-soft:#54524A;
+    --paper:#F7F4EC; --paper-raise:#FBF9F3; --ink:#1C1C1A; --ink-soft:#54524A; --ink-faint:#6F6A5C;
     --civic:#1D3557; --gold:#A6772C; --rule:#C9C2AE;
   }
   *{box-sizing:border-box;}
@@ -14,6 +14,7 @@
   .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:.04em;}
   .wrap{max-width:760px; margin:0 auto; padding:0 28px;}
   a{color:var(--civic);}
+  a:focus-visible, summary:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
 
   header.top{padding:22px 0; border-bottom:1px solid var(--rule);}
   header.top .wrap{display:flex; justify-content:space-between; align-items:center;}
@@ -51,65 +52,84 @@
   .exhibits{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:8px;}
   .exhibit{border:1px solid var(--rule); background:var(--paper-raise); padding:20px;}
   .exhibit .tag{font-family:'IBM Plex Mono'; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--gold);}
-  .exhibit h3{font-size:18px; margin:6px 0 8px; font-weight:600;}
+  .exhibit h3, .exhibit h4{font-size:18px; margin:6px 0 8px; font-weight:600;}
   .exhibit p{font-size:15px; margin:0;}
+  .exhibit ul{margin:10px 0 0; padding-left:18px; font-size:15px; color:var(--ink-soft);}
+  .exhibit li{margin-bottom:8px;}
 
   .intl-strip{font-size:14.5px; color:var(--ink-soft); border-left:3px solid var(--rule); padding:10px 0 10px 16px; margin-top:18px;}
   .intl-strip strong{color:var(--ink);}
 
-  .sections{display:grid; gap:14px; margin-top:10px;}
-  .section-card{border-left:3px solid var(--civic); padding:6px 0 6px 20px;}
-  .section-card .label{font-family:'IBM Plex Mono'; font-size:12px; color:var(--civic); letter-spacing:.06em;}
-  .section-card h3{font-size:18px; margin:4px 0 4px; font-weight:600;}
-  .section-card p{margin:0; font-size:15px;}
+  /* Syllabus */
+  .sub{font-family:'IBM Plex Mono'; font-size:12px; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--civic); margin:40px 0 14px; font-weight:600;}
+  .principles{list-style:none; margin:0; padding:0; border-top:1px solid var(--rule);}
+  .principles li{padding:12px 0; border-bottom:1px solid var(--rule); font-size:15.5px; color:var(--ink-soft); max-width:640px;}
+  .principles li strong{color:var(--ink);}
 
-  /* PASTE THIS INSTEAD: */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: 22px 0;
-}
-.stat {
-  background: var(--paper-raise);
-  border: 1px solid var(--rule);
-  padding: 20px 18px;
-  display: flex;
-  flex-direction: column;
-}
-.stat .n {
-  font-family: 'IBM Plex Mono';
-  font-size: 18px;
-  color: var(--civic);
-  font-weight: 600;
-  display: block;
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--rule);
-}
-.stat .l {
-  font-size: 14.5px;
-  color: var(--ink-soft);
-  line-height: 1.45;
-  flex-grow: 1;
-}
-.stat .l strong {
-  color: var(--ink);
-}
-.stat .src {
-  font-family: 'IBM Plex Mono';
-  font-size: 10px;
-  color: var(--rule);
-  display: block;
-  margin-top: 14px;
-  text-transform: uppercase;
-  letter-spacing: .02em;
-}
+  .strand{border-left:3px solid var(--civic); padding:4px 0 4px 20px; margin:0 0 34px;}
+  .strand .label{font-family:'IBM Plex Mono'; font-size:12px; color:var(--civic); letter-spacing:.06em;}
+  .strand h4{font-size:21px; margin:4px 0 6px; font-weight:600; line-height:1.25;}
+  .strand .core-q{font-style:italic; color:var(--civic); font-size:16px; margin:0 0 12px;}
+  .strand p{font-size:15px; margin:0 0 10px;}
+  .strand ul.topics{margin:0 0 12px; padding-left:18px; font-size:15px; color:var(--ink-soft); max-width:640px;}
+  .strand ul.topics li{margin-bottom:6px;}
+  .strand ul.topics li strong{color:var(--ink);}
+  .strand .thinkers{font-size:14.5px; margin-top:14px; padding-top:10px; border-top:1px dotted var(--rule); color:var(--ink-soft); max-width:640px;}
+  .strand .thinkers .k{font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:3px;}
+
+  .split{display:flex; height:46px; border:1px solid var(--ink); margin:6px 0 20px; font-family:'IBM Plex Mono'; font-size:12px; letter-spacing:.03em; text-transform:uppercase;}
+  .split div{display:flex; align-items:center; padding:0 14px; white-space:nowrap; overflow:hidden;}
+  .split .w{width:60%; background:var(--civic); color:var(--paper);}
+  .split .a{width:40%; background:var(--paper-raise); color:var(--ink);}
 
   .callout{border:1px solid var(--civic); border-left:4px solid var(--civic); background:var(--paper-raise);
     padding:18px 20px; margin:18px 0;}
   .callout .tag{font-family:'IBM Plex Mono'; font-size:11px; color:var(--civic); text-transform:uppercase; letter-spacing:.08em;}
   .callout p{margin:8px 0 0; font-size:15px;}
+  .callout .btn{margin-top:14px;}
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 22px 0;
+  }
+  .stat {
+    background: var(--paper-raise);
+    border: 1px solid var(--rule);
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .stat .n {
+    font-family: 'IBM Plex Mono';
+    font-size: 18px;
+    color: var(--civic);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .stat .l {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    flex-grow: 1;
+  }
+  .stat .l strong {
+    color: var(--ink);
+  }
+  .stat .src {
+    font-family: 'IBM Plex Mono';
+    font-size: 10px;
+    color: var(--ink-faint);
+    display: block;
+    margin-top: 14px;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+  }
 
   .research-note{border:1px dashed var(--rule); padding:16px 20px; background:var(--paper-raise); margin-top:6px;}
   .research-note p{font-size:14px; margin:0 0 8px;}
@@ -126,7 +146,7 @@
   .phase-step{flex:1; padding:14px 16px; font-family:'IBM Plex Mono'; font-size:12px; text-transform:uppercase; letter-spacing:.03em;
     color:var(--ink-soft); border-right:1px solid var(--rule);}
   .phase-step:last-child{border-right:none;}
-  .phase-step .st{display:block; font-size:10px; color:var(--rule); margin-bottom:4px;}
+  .phase-step .st{display:block; font-size:10px; color:var(--ink-faint); margin-bottom:4px;}
   .phase-step.active{background:var(--civic); color:var(--paper);}
   .phase-step.active .st{color:#9fb3cf;}
   .next-steps{margin:18px 0 0; padding-left:20px;}
@@ -149,7 +169,8 @@
   .linkgroup li{font-size:14px; margin-bottom:8px; break-inside:avoid;}
   .linkgroup a{text-decoration:none; border-bottom:1px solid var(--rule);}
   .linkgroup a:hover{border-color:var(--civic);}
-  .linkgroup .src{display:block; font-family:'IBM Plex Mono'; font-size:10.5px; color:var(--rule); text-transform:uppercase;}
+  .linkgroup .note{display:block; font-size:13px; line-height:1.4; color:var(--ink-soft); margin-top:3px;}
+  .linkgroup .src{display:block; font-family:'IBM Plex Mono'; font-size:10.5px; color:var(--ink-faint); text-transform:uppercase;}
 
   .copybox{border:1px dashed var(--rule); padding:18px; margin-top:10px; background:var(--paper-raise);}
   .copybox p{font-size:14px; margin:0 0 12px; font-family:'IBM Plex Mono'; color:var(--ink-soft);}
@@ -173,6 +194,9 @@
     .phase-step{border-right:none; border-bottom:1px solid var(--rule);}
     .phase-step:last-child{border-bottom:none;}
     .linkgroup ul{columns:1;}
+    .split{font-size:10.5px;}
+    .split div{padding:0 8px;}
+    .nav-links{gap:12px;}
     header.top .wrap{flex-direction:column; gap:10px; text-align:center;}
   }
 </style>
@@ -181,7 +205,8 @@
   <div class="wrap">
     <div class="brand">Philosophy &middot; Leaving Certificate</div>
     <div class="nav-links">
-      <a class="nav-link" href="Philosophy_for_the_Leaving_Certificate___July_2026_Draft.pdf" target="_blank">View Proposal (PDF)</a>
+      <a class="nav-link" href="Philosophy_for_the_Leaving_Certificate___Oct_2026_Draft.pdf" target="_blank">View Proposal (PDF)</a>
+      <a class="nav-link" href="#syllabus">Syllabus</a>
       <a class="nav-cta" href="#involved">Get involved</a>
     </div>
   </div>
@@ -193,7 +218,7 @@
       <div class="cover-title">Philosophy for the Leaving Certificate</div>
       <div class="cover-sub">A proposal for introducing Philosophy as a Leaving Certificate subject</div>
       <div class="cta-row">
-        <a class="btn ghost" href="Philosophy_for_the_Leaving_Certificate___July_2026_Draft.pdf">Read the proposal</a>
+        <a class="btn ghost" href="Philosophy_for_the_Leaving_Certificate___Oct_2026_Draft.pdf">Read the proposal</a>
         <a class="btn solid" href="https://www.change.org/LeavingCertPhilosophy" target="_blank">Sign the petition</a>
         <a class="btn ghost" href="https://forms.gle/YahS2ccSCze4SLed6" target="_blank">Take the survey</a>
         <a class="btn ghost" href="mailto:robertmfinan7@gmail.com">Get in touch</a>
@@ -207,6 +232,7 @@
     <h2>Why now</h2>
     <p class="lede">The Irish Senior Cycle curriculum is being redeveloped right now, and the NCCA has already added subjects that didn't exist a decade ago. Philosophy is an important part of that conversation.</p>
     <p>Irish students get little focused training in constructing an argument, telling valid reasoning from invalid, weighing competing ethical claims, or judging how they come to know what they think they know. These are skills used daily in law, technology, medicine, journalism, business and public life, whatever a student goes on to do. That training is more relevant now than ever, given how quickly generative AI has influenced how students approach schoolwork. Philosophy is also one of the least expensive subjects the NCCA could add: no labs, no equipment, no capital cost &mdash; only a curriculum, a teacher-training pathway, and an exam.</p>
+    <p>The value isn't only professional. The same habits and skills &mdash; defining terms, weighing evidence, arguing fairly, seeing how different areas of thought connect &mdash; help in everyday life: in friendships, family and parenting, in making sense of politics and the news, in how we relate to science and religion, and in our own pursuit of knowledge. Many find philosophical practice therapeutic.</p>
   </div>
 </section>
 
@@ -222,7 +248,7 @@
       <div class="exhibit">
         <div class="tag">Exhibit B</div>
         <h3>International Precedent</h3>
-        <p>It is standard practice everywhere else. The UK (A-Level Philosophy), France (the Philosophy Baccalaur&eacute;at), Italy, Finland, Germany, Poland, and Spain all already teach philosophy at second level, and Aotearoa New Zealand is currently adding it. Full links below in <a href="#links">Useful links</a>.</p>
+        <p>It is standard practice everywhere else. The UK (A-Level Philosophy), France (the Philosophy Baccalaur&eacute;at), Italy, Finland, Germany, Poland, and Spain all already teach philosophy at second level, and Aotearoa New Zealand is currently adding it. Northern Ireland's new TransformED curriculum (ages 4&ndash;14, first teaching from 2028) is also moving toward distinct, subject-based domains, a useful comparison for how a new subject gets defined. Full links below in <a href="#links">Useful links</a>.</p>
       </div>
     </div>
     <div class="intl-strip">
@@ -236,30 +262,32 @@
     <h2>The research</h2>
     <p class="lede">A primary <a href="https://forms.gle/YahS2ccSCze4SLed6">survey</a> of Irish students, teachers, graduates and employers is running alongside this proposal to further the research below.</p>
     <div class="stats">
-  <div class="stat">
-    <span class="n">$52.6k &rarr; $94.3k</span>
-    <span class="l"><strong>Highest early- and mid-career salary</strong> of any humanities major graduate in the United States.</span>
-    <span class="src">APA / PayScale</span>
-  </div>
-  
-  <div class="stat">
-    <span class="n">3.2% Unemployment</span>
-    <span class="l">Highly resilient career tracks, outperforming finance grads (3.7%) and computer science grads (6.1%).</span>
-    <span class="src">NY Fed, 2025</span>
-  </div>
-  
-  <div class="stat">
-    <span class="n">#2 LSAT &middot; Top GRE</span>
-    <span class="l">Second highest mean score of any major on the LSAT, alongside top-tier quantitative and verbal performance on the GRE.</span>
-    <span class="src">LSAC / ETS</span>
-  </div>
-</div>    <div class="callout">
+      <div class="stat">
+        <span class="n">$52.6k &rarr; $94.3k</span>
+        <span class="l"><strong>Highest early- and mid-career salary</strong> of any humanities major graduate in the United States.</span>
+        <span class="src">APA / PayScale</span>
+      </div>
+
+      <div class="stat">
+        <span class="n">3.2% Unemployment</span>
+        <span class="l">Highly resilient career tracks, outperforming finance grads (3.7%) and computer science grads (6.1%).</span>
+        <span class="src">NY Fed, 2025</span>
+      </div>
+
+      <div class="stat">
+        <span class="n">#2 LSAT &middot; Top GRE</span>
+        <span class="l">Second highest mean score of any major on the LSAT, alongside top-tier quantitative and verbal performance on the GRE.</span>
+        <span class="src">LSAC / ETS</span>
+      </div>
+    </div>
+    <div class="callout">
       <div class="tag">Selection effect, or does it actually train you?</div>
       <p>The obvious objection: maybe philosophy just attracts strong thinkers, rather than making them. A 2025 study tracking 649,511 US undergraduates controlled for incoming SAT scores and found a real residual training effect &mdash; philosophy majors outscored non-majors on the GRE Verbal by 33 points and the LSAT by 2 points <em>after</em> controlling for incoming ability, and ranked first of 57 majors on a composite measure of intellectual rigour and open-mindedness. <a href="https://philarchive.org/rec/PRISPD" target="_blank" rel="noopener">Prinzing &amp; Vazquez (2025)</a>, open access.</p>
     </div>
     <div class="research-note">
       <p><strong>Primary Survey Research</strong></p>
       <p>We are actively collecting Irish-centric data to establish demand among prospective students, assess workforce readiness among practicing teachers, and gather views from local employers. Please contribute your perspective to help build this comprehensive evidence base.</p>
+      <p><strong>Initial findings.</strong> Early survey results show overwhelming backing for the initiative, with 100% of participants supporting Philosophy as a Leaving Certificate option. Over 77% of secondary students surveyed so far express a strong desire to take the subject, 91% of parents report they would encourage their child to take it, and 100% of employers surveyed agree that critical thinking skills are crucial for workforce readiness and view a secondary-level philosophy qualification as a distinct positive signal.</p>
       <p class="survey-link-block">
         <a href="https://forms.gle/YahS2ccSCze4SLed6" target="_blank" style="font-family:'IBM Plex Mono'; font-size:13px; font-weight:600; text-transform:uppercase; color:var(--civic); text-decoration:none; border-bottom:1px solid var(--civic);">Take the primary survey &rarr;</a>
       </p>
@@ -267,32 +295,122 @@
   </div>
 </section>
 
-<section>
+<section id="syllabus">
   <div class="wrap">
     <h2>Proposed syllabus</h2>
-    <div class="sections">
-      <div class="section-card">
-        <div class="label">Strand A</div>
-        <h3>Logic &amp; Critical Thinking</h3>
-        <p>Validity and soundness, common fallacies, informal reasoning, an introduction to argument-mapping and proof.</p>
+    <p class="lede">A suggested starting point for a Leaving Certificate Philosophy course: four strands, a small group of core thinkers, and an assessment that rewards reasoning rather than recall.</p>
+    <p>This is a draft for discussion, not a finished specification. Anyone can suggest changes using the <a href="#feedback">feedback form</a> at the end of this section. Everything submitted will be discussed at a public conference in 2027, and the outline will then be revised before it is formally submitted to the NCCA.</p>
+
+    <h3 class="sub">How the course would work</h3>
+    <ul class="principles">
+      <li><strong>Skills and ways of thinking come first.</strong> The aim is to build tools: reading closely and accurately, defining terms, constructing and testing arguments, weighing evidence, and changing your mind for good reasons. Content serves those skills, not the other way round.</li>
+      <li><strong>Discussion over rote learning.</strong> Texts are a starting point for dialogue, objection and reply. Classes are built around dialectic, where students defend, challenge and refine positions, rather than reproducing notes.</li>
+      <li><strong>Depth over breadth.</strong> Rather than skimming many thinkers, each class studies one or two in depth. That leaves time to understand difficult ideas properly. Texts are chosen to reward patient reading, with accessible extracts and translations favoured over notoriously difficult works.</li>
+      <li><strong>The abstract and the applied, in balance.</strong> Every strand pairs a classic question with concrete cases: an ethical dilemma from medicine or technology, a claim from the news, an argument from a speech or an advert.</li>
+      <li><strong>Connected, not linear.</strong> The strands inform one another (ethics needs logic; science needs epistemology), so there is no fixed starting point and teachers can begin wherever suits their class.</li>
+    </ul>
+
+    <h3 class="sub">The four strands</h3>
+
+    <div class="strand">
+      <div class="label">Strand A</div>
+      <h4>Logic &amp; Critical Thinking</h4>
+      <p class="core-q">What makes an argument good? How can we tell when reasoning goes wrong?</p>
+      <p>The toolkit for the rest of the course, practised on real material rather than in the abstract.</p>
+      <ul class="topics">
+        <li>Arguments, premises and conclusions; <strong>validity and soundness</strong>.</li>
+        <li><strong>Common fallacies:</strong> spotting them in others and avoiding them in your own writing.</li>
+        <li>Defining terms precisely, and reading arguments charitably and accurately.</li>
+        <li><strong>Informal reasoning and argument-mapping</strong> applied to editorials, advertisements, speeches and philosophical arguments.</li>
+      </ul>
+      <p>Formal logic is deliberately light: a few simple introductory ideas, not a large or mandatory technical component. The emphasis throughout is on informal methods of argument.</p>
+      <div class="thinkers"><span class="k">Suggested thinkers</span>Frege, Aristotle, Russell, Peirce, William James, Quine, Wittgenstein, Husserl, N&amacr;g&amacr;rjuna, Tarski</div>
+    </div>
+
+    <div class="strand">
+      <div class="label">Strand B</div>
+      <h4>Ethics, Aesthetics &amp; Social Philosophy</h4>
+      <p class="core-q">How should we live? What do we owe one another? What makes something beautiful, and does it matter?</p>
+      <ul class="topics">
+        <li><strong>Ethical frameworks:</strong> virtue ethics, deontology, utilitarianism and divine command theory, alongside existentialist and Buddhist approaches to how a life should be lived.</li>
+        <li><strong>Applied ethics</strong>, central rather than an add-on: medicine and bioethics, technology and AI, the environment and animals, social media and privacy, fairness in everyday institutions such as schools and workplaces.</li>
+        <li><strong>Aesthetics:</strong> what art is, whether beauty is subjective, how we appreciate art and nature differently, and how standards of taste are determined.</li>
+        <li><strong>Social philosophy:</strong> justice, freedom, rights, the place of religion in public life, and the individual's relationship to society, in a way that complements rather than repeats Politics &amp; Society.</li>
+      </ul>
+      <div class="thinkers"><span class="k">Suggested thinkers</span>Aristotle, Kant, de Beauvoir, Camus, Augustine, Bentham &amp; J. S. Mill, Rawls, Arendt</div>
+    </div>
+
+    <div class="strand">
+      <div class="label">Strand C</div>
+      <h4>Epistemology &amp; Philosophy of Science</h4>
+      <p class="core-q">What is knowledge? How do we come to know things, and how do we decide what to trust?</p>
+      <ul class="topics">
+        <li>Knowledge, belief and justification; scepticism and certainty.</li>
+        <li>Evidence and inference: what good evidence looks like, and where reasoning from it goes wrong.</li>
+        <li><strong>Science and its limits:</strong> how scientific knowledge is generated and tested, what separates science from pseudoscience, and what science cannot tell us.</li>
+        <li><strong>Evidence in public life:</strong> telling reliable news from fake news, judging sources, statistics and political claims, and the methods for checking accuracy.</li>
+      </ul>
+      <div class="thinkers"><span class="k">Suggested thinkers</span>Plato, William James, Kierkegaard, B. F. Skinner, Locke, Descartes, Popper, the Buddha, Gettier</div>
+    </div>
+
+    <div class="strand">
+      <div class="label">Strand D</div>
+      <h4>Metaphysics &amp; Philosophy of Mind</h4>
+      <p class="core-q">What is real? What am I? Do we have free will?</p>
+      <ul class="topics">
+        <li>Appearance and reality; existence, possibility and necessity.</li>
+        <li><strong>Mind and self:</strong> personal identity, consciousness, and the relationship between mind and body. Is the mind the brain?</li>
+        <li>Free will and determinism.</li>
+        <li><strong>Carving up the world:</strong> are the boundaries between things real, or is the world divided up by our minds?</li>
+        <li><strong>Can machines think?</strong> Intelligence, understanding and consciousness in the age of AI.</li>
+        <li><strong>Further puzzles:</strong> Can God exist? Are there composite objects, or only simple ones? Do numbers exist?</li>
+      </ul>
+      <div class="thinkers"><span class="k">Suggested thinkers</span>Plato, Aquinas, Ockham, Spinoza, Quine, David Lewis</div>
+    </div>
+
+    <h3 class="sub">Thinkers</h3>
+    <div class="callout">
+      <div class="tag">Core thinkers (proposed)</div>
+      <p>A small shared group that every class encounters, whichever texts they study in depth: <strong>Plato, Aristotle, Descartes and Hume</strong>, with others under consideration. Who belongs in this group is one of the main things we would like feedback on.</p>
+    </div>
+    <p>Beyond that shared group, each strand lists thinkers who could be studied in depth. Teachers would choose one or two from the suite for their class, much as English classes choose between set texts: one class might study Quine while another studies Camus. That gives students the time to engage properly with difficult ideas instead of being overwhelmed by many thinkers at once, and the suite can be rotated over time. The lists above are examples rather than a final selection, and several thinkers appear under more than one strand.</p>
+
+    <h3 class="sub">Assessment</h3>
+    <div class="split" role="img" aria-label="Written paper 60 percent, Additional Assessment Component 40 percent">
+      <div class="w">60% Written paper</div>
+      <div class="a">40% AAC</div>
+    </div>
+    <div class="exhibits">
+      <div class="exhibit">
+        <div class="tag">60%</div>
+        <h4>Written examination</h4>
+        <p>One paper with two sections:</p>
+        <ul>
+          <li><strong>Seen section.</strong> Questions on the thinker or text the class has studied in depth. As with set texts in English, one class might study Quine and another Camus.</li>
+          <li><strong>Unseen section.</strong> A short argument or debate the students haven't met before, in the way unseen poetry works in English. Students explain how it works, then defend or object to it using the skills they have built.</li>
+        </ul>
       </div>
-      <div class="section-card">
-        <div class="label">Strand B</div>
-        <h3>Ethics &amp; Social Philosophy</h3>
-        <p>The major ethical frameworks, applied to contemporary case studies in personal and public life.</p>
-      </div>
-      <div class="section-card">
-        <div class="label">Strand C</div>
-        <h3>Epistemology &amp; Philosophy of Science</h3>
-        <p>Knowledge, belief and evidence; distinguishing science from pseudoscience; the limits of science.</p>
-      </div>
-      <div class="section-card">
-        <div class="label">Strand D</div>
-        <h3>Metaphysics &amp; Philosophy of Mind</h3>
-        <p>What is real? Personal identity and free will. Can machines think?</p>
+      <div class="exhibit">
+        <div class="tag">40% &middot; Additional Assessment Component</div>
+        <h4>Discussion and student-led work</h4>
+        <p>Externally assessed by the State Examinations Commission (SEC):</p>
+        <ul>
+          <li><strong>Interviews, discussions or oral exams,</strong> conducted in person, or online where necessary.</li>
+          <li><strong>Student-led projects or portfolios.</strong> The exact format can be refined as the course develops.</li>
+        </ul>
       </div>
     </div>
-    <p style="margin-top:18px;">Assessment: a terminal written paper plus a 40% Additional Assessment Component &mdash; a project, portfolio, or structured oral discussion, externally assessed by the State Examinations Commission (SEC) &mdash; matching the standard the NCCA now applies to every new and redeveloped Senior Cycle subject.</p>
+    <p style="margin-top:18px;">This matches the standard the NCCA now applies to new and redeveloped Senior Cycle subjects, a minimum of 40% non-written, externally assessed work, and suits a subject built on discussion. Across both components, marks reward the quality of reasoning, fairness to opposing views and clarity of expression, not how much a student has memorised.</p>
+
+    <div class="intl-strip">
+      <strong>Built on existing Irish models:</strong> the strands and learning outcomes of Politics &amp; Society, which also names key thinkers and includes a data-based written section; the Junior Cycle Philosophy short course, which begins with a foundation strand on doing philosophy before moving into areas such as knowledge, art, science, moral and religious philosophy; and the way English pairs set texts with unseen material. A full specification would add detailed learning outcomes for each strand.
+    </div>
+
+    <div class="callout" id="feedback">
+      <div class="tag">Help shape this draft</div>
+      <p>Suggest thinkers for any of the five lists (core, logic, ethics, epistemology, metaphysics), propose structural changes, or tell us what is missing. Philosophers, teachers, students and parents are all welcome. All feedback will be discussed at the public conference in 2027 before the outline is revised and formally submitted to the NCCA.</p>
+      <a class="btn solid" href="https://forms.gle/dhp5wgQKx75PGUau8" target="_blank" rel="noopener">Give syllabus feedback</a>
+    </div>
   </div>
 </section>
 
@@ -309,9 +427,13 @@
     <h2>Common questions</h2>
     <details class="faq"><summary>Will there be enough teachers?</summary><p>Yes &mdash; existing teachers can cross-train via CPD, as happened for Politics &amp; Society, and Ireland has a large pool of philosophy PhDs without permanent academic posts.</p></details>
     <details class="faq"><summary>Will enough students choose it?</summary><p>This doesn't need to be a large subject. Uptake comparable to Politics &amp; Society's roughly 3,000 candidates in 2025 would already be a success. That said, Philosophy is growing in popularity, and our currently running <a href="https://forms.gle/YahS2ccSCze4SLed6">survey</a> is assessing students' likelihood to choose the subject.</p></details>
-    <details class="faq"><summary>Isn't it too abstract for Senior Cycle?</summary><p>The syllabus is built around concrete questions &mdash; can machines think? what is real? which arguments are sound? &mdash; and the 40% AAC rewards applied reasoning and discussion, not just written exposition.</p></details>
+    <details class="faq"><summary>Isn't it too abstract for Senior Cycle?</summary><p>The syllabus is designed to balance the abstract and the applied. Ethics and aesthetics are worked through concrete cases; logic is practised on real arguments from the news, speeches; epistemology covers how to tell reliable information from fake news. The big abstract questions &mdash; can machines think? what is real? &mdash; are there too, because they are part of what makes the subject worth studying. And the 40% AAC rewards applied reasoning and discussion, not just written exposition.</p></details>
+    <details class="faq"><summary>Will students have to memorise lots of philosophers?</summary><p>No. The emphasis is on skills and ways of thinking, built through discussion. Each class studies only one or two thinkers in depth, and the unseen section of the exam tests reasoning on an argument students haven't met before, which can't be answered by recall.</p></details>
+    <details class="faq"><summary>Isn't philosophy too difficult?</summary><p>It is demanding, as many good subjects are, but the course is designed to make it reachable. Students first build general tools, such as assessing arguments and weighing evidence, and then spend real time with one or two thinkers rather than racing through many. Texts are chosen for how well they reward patient reading, and good, patient teaching makes success achievable.</p></details>
+    <details class="faq"><summary>Will there be a lot of formal logic or maths?</summary><p>No. Formal logic would be a very basic, simple introduction rather than a large or mandatory part of the course. Logic is mostly informal: how arguments work, validity and soundness, and fallacies.</p></details>
+    <details class="faq"><summary>Isn't this already covered by other subjects?</summary><p>Philosophy's breadth can raise the worry that Politics, Religion, Classics and others already cover the same ground. They don't. Philosophy is broadly applicable and complements every subject, even maths and physics, rather than competing with any of them, so overlap isn't a real concern. Political practice and institutions belong to Politics &amp; Society, and the philosophy of politics can be touched on here without repeating it. Religious Education is more focused on traditions, texts and theology, whereas philosophy is focused on argument, and religious questions appear only where they arise naturally within other topics, such as divine command theory in ethics or religion's place in public life. And the aims of Classics are very different: a great deal of philosophy has happened since ancient Greece, so the course is not limited to repeating it.</p></details>
     <details class="faq"><summary>Would it cost schools anything?</summary><p>No labs, specialist equipment, or capital investment, and the Transition Year pilot phase needs no full NCCA sign-off before a school opts in.</p></details>
-    <details class="faq"><summary>How would it be assessed?</summary><p>A terminal exam paper plus a 40% Additional Assessment Component, externally assessed by the State Examinations Commission &mdash; the NCCA's current standard for new and redeveloped Senior Cycle subjects.</p></details>
+    <details class="faq"><summary>How would it be assessed?</summary><p>A written paper worth 60% (a seen section on a thinker or text the class has studied, and an unseen section where students engage with a new argument), plus a 40% Additional Assessment Component of discussion-based work and student-led projects, externally assessed by the State Examinations Commission &mdash; the NCCA's current standard for new and redeveloped Senior Cycle subjects. See the <a href="#syllabus">proposed syllabus</a> for detail.</p></details>
   </div>
 </section>
 
@@ -329,6 +451,7 @@
       <li>Gather survey evidence from students, parents, teachers, graduates and employers.</li>
       <li>Build a sample Transition Year module and teacher support pack.</li>
       <li>Secure endorsements from university philosophy departments and education bodies.</li>
+      <li>Collect feedback on the draft syllabus and discuss it at a public conference in 2027.</li>
       <li>Submit a formal proposal to the NCCA as part of Senior Cycle Redevelopment.</li>
     </ul>
   </div>
@@ -354,6 +477,11 @@
         <a class="link" href="mailto:robertmfinan7@gmail.com?subject=Endorsement">Get in touch &rarr;</a>
       </div>
       <div class="involve-row">
+        <h3>Syllabus feedback</h3>
+        <p>Suggest thinkers, topics or structural changes to the draft syllabus. All feedback will be discussed at a public conference in 2027.</p>
+        <a class="link" href="https://forms.gle/dhp5wgQKx75PGUau8" target="_blank" rel="noopener">Give feedback &rarr;</a>
+      </div>
+      <div class="involve-row">
         <h3>The public</h3>
         <p>Sign the petition to the Minister for Education and the NCCA, and share your voice in our active community survey.</p>
         <div class="link-group-stack">
@@ -375,7 +503,7 @@
           <a class="link" href="PhilLC-Poster-A4.pdf" download>Download PDF &darr;</a>
         </div>
       </div>
-      
+
     </div>
 
     <div class="copybox">
@@ -390,6 +518,15 @@
     <h2>Useful links</h2>
     <p class="lede">Everything this proposal draws on, so anyone can check the case themselves or dig further.</p>
     <div class="linkgroups">
+
+      <div class="linkgroup">
+        <h4>The campaign so far</h4>
+        <ul>
+          <li><a href="Philosophy_for_the_Leaving_Certificate___July_2026_Draft.pdf" target="_blank" rel="noopener">Previous draft of the proposal (July 2026, PDF)</a><span class="src">philosophyforleavingcertificate.com</span></li>
+          <li><a href="https://www.trinitynews.ie/2026/07/trinity-graduate-launches-petition-to-make-philosophy-a-leaving-cert-subject/" target="_blank" rel="noopener">Trinity graduate launches petition to make philosophy a Leaving Cert subject</a><span class="src">Trinity News, July 2026</span></li>
+          <li><a href="https://voterconnect.ie/proceedings/seanad/2026-07-16/dbsect_8.q05" target="_blank" rel="noopener">Senator Alison Comyn calls for a Seanad debate on philosophy as a Leaving Cert subject</a><span class="src">Seanad, 16 July 2026 &middot; VoterConnect</span></li>
+        </ul>
+      </div>
 
       <div class="linkgroup">
         <h4>Irish precedent &amp; policy</h4>
@@ -420,6 +557,7 @@
           <li><a href="https://lehrplannavigator.nrw.de/system/files/media/document/file/klp_gost_philosophie.pdf" target="_blank" rel="noopener">Philosophie Lehrplan, NRW (PDF)</a><span class="src">Germany</span></li>
           <li><a href="https://static.zpe.gov.pl/portal/f/res/RnCrRvOJhInl5/1670515206/2l4Ch3NASytk8U01xnDSZoqtFMzd9qQJ.pdf" target="_blank" rel="noopener">Core curriculum (PDF)</a><span class="src">Poland</span></li>
           <li><a href="https://educagob.educacionfpydeportes.gob.es/curriculo/curriculo-lomloe/menu-curriculos-basicos/bachillerato/materias/filosofia/desarrollo.html" target="_blank" rel="noopener">Filosof&iacute;a, Bachillerato curriculum</a><span class="src">Spain</span></li>
+          <li><a href="https://www.education-ni.gov.uk/sites/default/files/2026-06/TransformED%20-%20Curriculum%20Overview%20Document.pdf" target="_blank" rel="noopener">TransformED: Northern Ireland Curriculum 2028, overview (PDF)</a><span class="note">A move to a domain-led, subject-based curriculum, away from broad Areas of Learning. Covers ages 4&ndash;14.</span><span class="src">Northern Ireland</span></li>
         </ul>
       </div>
 
@@ -451,6 +589,17 @@
           <li><a href="https://thecrashcourse.com/topic/philosophy/" target="_blank" rel="noopener">Crash Course Philosophy</a><span class="src">thecrashcourse.com</span></li>
           <li><a href="https://www.stephenhicks.org/wp-content/uploads/2015/08/RussellB-The-Value-of-Philosophy-text.pdf" target="_blank" rel="noopener">Bertrand Russell: The Value of Philosophy</a><span class="src">PDF</span></li>
           <li><a href="https://philpapers.org/rec/CRAPSA-2" target="_blank" rel="noopener">Tim Crane: Philosophy, Science and the Value of Understanding</a><span class="src">PhilPapers</span></li>
+          <li><a href="https://hiw.kuleuven.be/en/study/prospective/OOCP/index.html" target="_blank" rel="noopener">Open Online Courses in Philosophy</a><span class="note">Free introductions to logic, epistemology, political philosophy, philosophy of religion and more.</span><span class="src">KU Leuven</span></li>
+          <li><a href="https://openlogicproject.org/about/adoptions/" target="_blank" rel="noopener">Open Logic Project</a><span class="note">Free, open-source logic textbooks and the courses that use them.</span><span class="src">openlogicproject.org</span></li>
+        </ul>
+      </div>
+
+      <div class="linkgroup">
+        <h4>Resources &amp; enrichment for students</h4>
+        <ul>
+          <li><a href="https://www.fiosrach.ie" target="_blank" rel="noopener">Fiosrach.ie</a><span class="note">A separate resource for students and budding philosophers. "Fiosrach" is Irish for curious or nosey, and relates to "fiosr&uacute;ch&aacute;n", meaning enquiry. Funded by COGG; fully live in August 2027.</span><span class="src">fiosrach.ie</span></li>
+          <li><a href="https://royalinstitutephilosophy.org/think-essay-prize/" target="_blank" rel="noopener">Think Essay Prize</a><span class="note">An annual philosophy essay competition for 15&ndash;18 year olds.</span><span class="src">Royal Institute of Philosophy</span></li>
+          <li><a href="https://www.modusponensinstitute.com/" target="_blank" rel="noopener">Modus Ponens Institute</a><span class="note">Philosophy, ethics and logic classes, camps and international competitions for students.</span><span class="src">modusponensinstitute.com</span></li>
         </ul>
       </div>
 
